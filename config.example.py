@@ -5,6 +5,6 @@ api_hash = '0123456789abcdef0123456789abcdef'
 channels = [
     {
         'name' : 'a_channel_name'
-        'format' : '$artist - $songname'
+        'format' : r'(?P<artist>.*) - (?P<songname>.*).flac'
     }
 ]
