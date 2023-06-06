@@ -3,3 +3,6 @@ __pycache__/
 *.session
 *.pkl
 downloads/
+*.session-journal
+*.flac
+*.mp3

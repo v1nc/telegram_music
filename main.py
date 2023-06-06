@@ -22,8 +22,10 @@ selection_list = []
 class SelectionListApp(App[None]):
     CSS_PATH = "table.css"
     BINDINGS = [
-        ("d", "download()", "Download selected Songs")
+        ("d", "download()", "Download selected ongs"),
+        ("a", "all()", "Select/Deselect all songs from the list")
     ]
+    all_toggle = False
     def compose(self) -> ComposeResult:
         yield Header()
         with Horizontal():
@@ -40,6 +42,14 @@ class SelectionListApp(App[None]):
         # this is very dirty :D
         os.execv(sys.executable, ['python', sys.argv[0], "download-search"])
         sys.exit(0)
+
+    def action_all(self) -> None:
+        if self.all_toggle:
+            selection_list.deselect_all()
+            self.all_toggle = False
+        else:
+            selection_list.select_all()
+            self.all_toggle = True
 
 def print_info(message):
     click.echo('['+ click.style('telegram_music', fg='green') + f']: {message}')
@@ -61,6 +71,7 @@ def download_list():
                     song_id = splitted[1]
                     print_info(f'Downloading song {song_counter}/{len(song_list)}')
                     download_song(channel,song_id)
+                    song_counter+=1
                 else:
                     print_error(f'list id invalid: {song}')
         os.remove(LIST_FILE)
