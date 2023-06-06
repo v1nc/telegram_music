@@ -1,5 +1,5 @@
 # Telegram Music
-_Search for music in your telegram channels and download it, powered by trogon & textual__
+_Search for music in your telegram channels and download it, powered by trogon & textual_
 
 ## Setup
 1. Install requirements: `pip install -r requirements.txt`
